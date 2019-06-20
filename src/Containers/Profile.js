@@ -7,14 +7,16 @@ const pic = {
 export default class Profile extends Component<Props> {
   render() {
     return (
-      <View>
-        <Image source={pic} style={styles.imageContainer}/>
-        <Text>Saya nama preeti</Text>
+      <View style={styles.container}>
+        <Image source={pic} style={styles.profileImage}/>
+        <Text style={styles.title}>Saya nama preeti</Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  imageContainer: {width: 100, height: 100}
+  container: {justifyContent: 'center', flex: 1, alignItems: 'center'},
+  profileImage: {width: 300, height: 300, borderRadius: 150},
+  title: {fontSize: 30, fontFamily:'Cochin'}
 });

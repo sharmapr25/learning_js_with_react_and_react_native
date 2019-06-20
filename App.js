@@ -22,7 +22,7 @@ export default class App extends Component<Props> {
   render() {
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1}}>
         <Profile/>
       </SafeAreaView>
     );
