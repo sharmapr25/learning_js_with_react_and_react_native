@@ -6,8 +6,8 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
+import React, {Component} from "react";
+import {Platform, SafeAreaView, Text} from "react-native";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,14 +19,10 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    let pic = {
-      url: "https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg"
-    };
 
     return (
       <SafeAreaView>
-        <Image source={pic} style={{width: 200, height: 200}}/>
-        <Text>Preeti Sharma</Text>
+        <Text>Hello world</Text>
       </SafeAreaView>
     );
   }
