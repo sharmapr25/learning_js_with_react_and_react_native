@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from "react";
-import {Platform, Text} from "react-native";
+import {Platform, Text, SafeAreaView} from "react-native";
 import Profile from "./src/Containers/Profile";
 
 const instructions = Platform.select({
@@ -22,7 +22,9 @@ export default class App extends Component<Props> {
   render() {
 
     return (
+      <SafeAreaView>
         <Profile/>
+      </SafeAreaView>
     );
   }
 }
