@@ -9,11 +9,9 @@ import App from '../App';
 
 
 // Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
   const wrapper = shallow(<App />);
   const textWrapper = wrapper.find('Text');
-  console.log('RWP', textWrapper.text());
   expect(textWrapper.props().children).toEqual('Hello world');
 });
