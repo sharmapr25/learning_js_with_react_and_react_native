@@ -8,7 +8,7 @@
 
 import React, {Component} from "react";
 import {Platform, Text, SafeAreaView} from "react-native";
-import Profile from "./src/Containers/Profile";
+import News from "./src/Containers/News";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
 
     return (
       <SafeAreaView style={{flex: 1}}>
-        <Profile/>
+        <News/>
       </SafeAreaView>
     );
   }
