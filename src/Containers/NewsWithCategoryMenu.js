@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import {Platform, SafeAreaView, Text, StyleSheet, Image, FlatList, View, ScrollView} from "react-native";
+import {Text, StyleSheet, Image, FlatList, View} from "react-native";
+import NewsItemWithoutCategory from "../Components/NewsItemWithoutCategory";
+import CategoryMenu from "../Components/CategoryMenu";
 
-const allNews = [
+export const ALL_NEWS = [
   {title: "title1", description: "D", category: "entertainment"},
   {title: "title2", description: "D", category: "entertainment"},
   {title: "title3", description: "D", category: "entertainment"},
@@ -15,34 +17,25 @@ const unique = (element, index, list) => {
 
 const getUniqueCategories = (news) => {
   return news.map((item) => item.category).filter(unique);
-}
+};
 
-export default class ViewGroupRendering extends Component<Props> {
+export default class NewsWithCategoryMenu extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.categoryMenu}>
-          {getUniqueCategories(allNews).map((category) => {return (<Text style={styles.category}>{category}</Text>)})}
-        </View>
+        <CategoryMenu categories={getUniqueCategories(ALL_NEWS)}/>
         <FlatList
-          data={allNews}
-          renderItem={({item}) =>
-            <View style={styles.news}>
-              <Text style={styles.item}>{item.title}</Text>
-              <Text style={styles.item}>{item.description}</Text>
-            </View>
-          }
-
+          testID="newsList"
+          data={ALL_NEWS}
+          renderItem={({item}) => <NewsItemWithoutCategory news={item}/>}
           keyExtractor={(item, index) => item.title}
         />
       </View>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
-  categoryMenu: {flexDirection: 'row'},
-  category: {margin:2, backgroundColor: "lavender"},
   news: {fontFamily: "Cochin", fontSize: 20, margin: 2, backgroundColor: "lightblue"},
   container: {flex: 1, flexDirection: "column", alignItems: "stretch"}
 });

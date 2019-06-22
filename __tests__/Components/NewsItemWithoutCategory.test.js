@@ -1,18 +1,18 @@
 import {shallow} from "enzyme";
 import React from "react";
-import NewsItem from "../../src/Components/NewsItem";
+import NewsItemWithoutCategory from "../../src/Components/NewsItemWithoutCategory";
 
-describe("news item", () => {
+describe("news item without category", () => {
   let wrapper;
 
   beforeEach(() => {
-    const item = {"title": "testTitle", "description": "It is a test", "category": "test"};
-    wrapper = shallow(<NewsItem news={item}/>);
+    const item = {"title": "testTitle", "description": "It is a test"};
+    wrapper = shallow(<NewsItemWithoutCategory news={item}/>);
   });
 
   it("news should have three text elements", () => {
     const textItem = wrapper.find("Text");
-    expect(textItem).toHaveLength(3);
+    expect(textItem).toHaveLength(2);
   });
 
   it("news title should be equal to testTitle", () => {
@@ -23,11 +23,6 @@ describe("news item", () => {
   it("news description should be equal to It is a test", () => {
     const descriptionItem = wrapper.find({testID: "description"});
     expect(descriptionItem.props().children).toEqual("It is a test");
-  });
-
-  it("news category should be equal to test", () => {
-    const categoryItem = wrapper.find({testID: "category"});
-    expect(categoryItem.props().children).toEqual("test");
   });
 
 });

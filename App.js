@@ -9,6 +9,7 @@
 import React, {Component} from "react";
 import {Platform, Text, SafeAreaView} from "react-native";
 import News from "./src/Containers/News";
+import NewsWithCategoryMenu from "./src/Containers/NewsWithCategoryMenu";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,7 +24,7 @@ export default class App extends Component<Props> {
 
     return (
       <SafeAreaView style={{flex: 1}}>
-        <News/>
+        <NewsWithCategoryMenu/>
       </SafeAreaView>
     );
   }
