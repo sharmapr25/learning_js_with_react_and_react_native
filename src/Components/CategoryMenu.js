@@ -7,7 +7,7 @@ export default class CategoryMenu extends Component{
     return(
       <View style={styles.categoryMenu}>
         {categories.map((category) => {
-          return (<Text key={category} style={styles.category}>{category}</Text>);
+          return (<Text key={category.id} style={styles.category}>{category.name}</Text>);
         })}
       </View>
     )

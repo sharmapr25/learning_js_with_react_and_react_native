@@ -1,17 +1,18 @@
-/**
- * @format
- */
-
-import {configure, shallow} from "enzyme";
+import { shallow } from 'enzyme';
 import 'react-native';
 import React from 'react';
+
 import App from '../App';
 
 
-// Note: test renderer must be required after react-native.
+describe('App', () => {
+  describe('#render', () => {
+    it('should render NewsWithCategoryMenu component', () => {
+      const wrapper = shallow(<App/>);
 
-it('renders correctly', () => {
-  const wrapper = shallow(<App />);
-  const textWrapper = wrapper.find('Text');
-  expect(textWrapper.props().children).toEqual('Hello world');
+      const textWrapper = wrapper.find('NewsWithCategoryMenu');
+
+      expect(textWrapper).toHaveLength(1);
+    });
+  });
 });
