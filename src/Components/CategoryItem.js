@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 5,
     padding: 10,
-    borderRadius: 20
+    borderRadius: 20,
+    justifyContent: 'center'
   },
   activeItem: {
     backgroundColor: '#ea63c2'

@@ -67,13 +67,21 @@ const news = [
 
 export default class NewsScreen extends Component {
   state = {
-    selectedCategory: 0
+    selectedCategory: categories[0]
   }
 
   changeCategory = (category) => {
     this.setState({
-      selectedCategory: category.id
+      selectedCategory: category
     })
+  }
+
+  renderNews = () => {
+    const { selectedCategory } = this.state
+    if (selectedCategory === categories[0]) {
+      return news
+    }
+    return news.filter((item) => item.categoryId === selectedCategory.id)
   }
 
   render () {
@@ -81,6 +89,7 @@ export default class NewsScreen extends Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <View style={{ height: 60, justifyContent: 'center'}}>
         <FlatList
           horizontal
           data={categories}
@@ -88,14 +97,15 @@ export default class NewsScreen extends Component {
             <CategoryItem
               onPress={this.changeCategory}
               category={item}
-              active={this.state.selectedCategory === item.id}
+              active={this.state.selectedCategory === item}
             />
           }
           keyExtractor={(item, index) => index.toString()}
           extraData={selectedCategory}
         />
+        </View>
         <FlatList
-          data={news}
+          data={this.renderNews()}
           renderItem={({ item }) =>
             <NewsItem news={item} />
           }
