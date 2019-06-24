@@ -6,36 +6,37 @@ import axios from 'axios';
 import NewsItemWithoutCategory from '../Components/NewsItemWithoutCategory';
 import CategoryMenu from '../Components/CategoryMenu';
 
-export const ALL_NEWS = [
-  { title: 'title1', description: 'D', category: 'entertainment' },
-  { title: 'title2', description: 'D', category: 'entertainment' },
-  { title: 'title3', description: 'D', category: 'science' },
-  { title: 'title4', description: 'D', category: 'entertainment' }
-];
-
-
-const unique = (element, index, list) => {
-  return list.indexOf(element) === index;
-};
-
-const getUniqueCategories = (news) => {
-  return news.map((item) => item.category).filter(unique);
-};
-
+const styles = StyleSheet.create({
+  news: {
+    fontFamily: 'Cochin',
+    fontSize: 20,
+    margin: 2,
+    backgroundColor: 'lightblue'
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch'
+  }
+});
 
 export default class NewsWithCategoryMenu extends Component {
   state = {
     search: '',
-    newsList: []
+    newsList: [],
+    categories: []
   };
 
   componentDidMount() {
-    this.fetchNews();
+    this.fetch('http://localhost:3000/news', 'newsList');
+    this.fetch('http://localhost:3000/categories', 'categories');
   }
 
-  fetchNews = async () => {
-    const { data: newsList } = await axios.get('http://localhost:3000/news');
-    this.setState({ newsList });
+  fetch = async (url, stateName) => {
+    const { data } = await axios.get(url);
+    this.setState({
+      [stateName]: data
+    });
   };
 
   updateSearch = search => {
@@ -53,7 +54,7 @@ export default class NewsWithCategoryMenu extends Component {
   };
 
   render() {
-    const { search } = this.state;
+    const { search, categories } = this.state;
     return (
       <View style={styles.container}>
         <SearchBar
@@ -61,7 +62,7 @@ export default class NewsWithCategoryMenu extends Component {
           onChangeText={this.updateSearch}
           value={search}
         />
-        <CategoryMenu categories={getUniqueCategories(ALL_NEWS)}/>
+        <CategoryMenu categories={categories}/>
         <FlatList
           testID="newsList"
           data={this.filterNewsByCategory()}
@@ -72,8 +73,3 @@ export default class NewsWithCategoryMenu extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  news: { fontFamily: 'Cochin', fontSize: 20, margin: 2, backgroundColor: 'lightblue' },
-  container: { flex: 1, flexDirection: 'column', alignItems: 'stretch' }
-});
