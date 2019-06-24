@@ -1,14 +1,16 @@
-import React, {Component} from "react";
-import {Text, StyleSheet, Image, FlatList, View} from "react-native";
+import React, { Component } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import NewsItemWithoutCategory from "../Components/NewsItemWithoutCategory";
-import CategoryMenu from "../Components/CategoryMenu";
+import axios from 'axios';
+
+import NewsItemWithoutCategory from '../Components/NewsItemWithoutCategory';
+import CategoryMenu from '../Components/CategoryMenu';
 
 export const ALL_NEWS = [
-  {title: "title1", description: "D", category: "entertainment"},
-  {title: "title2", description: "D", category: "entertainment"},
-  {title: "title3", description: "D", category: "science"},
-  {title: "title4", description: "D", category: "entertainment"}
+  { title: 'title1', description: 'D', category: 'entertainment' },
+  { title: 'title2', description: 'D', category: 'entertainment' },
+  { title: 'title3', description: 'D', category: 'science' },
+  { title: 'title4', description: 'D', category: 'entertainment' }
 ];
 
 
@@ -21,9 +23,19 @@ const getUniqueCategories = (news) => {
 };
 
 
-export default class NewsWithCategoryMenu extends Component<Props> {
+export default class NewsWithCategoryMenu extends Component {
   state = {
     search: '',
+    newsList: []
+  };
+
+  componentDidMount() {
+    this.fetchNews();
+  }
+
+  fetchNews = async () => {
+    const { data: newsList } = await axios.get('http://localhost:3000/news');
+    this.setState({ newsList });
   };
 
   updateSearch = search => {
@@ -31,12 +43,13 @@ export default class NewsWithCategoryMenu extends Component<Props> {
   };
 
   filterNewsByCategory = () => {
-    if(this.state.search){
-      return ALL_NEWS.filter((news) => {
-        return news.category.toLowerCase() == this.state.search.toLowerCase();
+    const { search, newsList } = this.state;
+    if (search) {
+      return newsList.filter((news) => {
+        return news.category.toLowerCase() === search.toLowerCase();
       })
     }
-    return ALL_NEWS;
+    return newsList;
   };
 
   render() {
@@ -52,15 +65,15 @@ export default class NewsWithCategoryMenu extends Component<Props> {
         <FlatList
           testID="newsList"
           data={this.filterNewsByCategory()}
-          renderItem={({item}) => <NewsItemWithoutCategory news={item}/>}
-          keyExtractor={(item, index) => item.title}
+          renderItem={({ item }) => <NewsItemWithoutCategory news={item}/>}
+          keyExtractor={(item) => item.title}
         />
       </View>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
-  news: {fontFamily: "Cochin", fontSize: 20, margin: 2, backgroundColor: "lightblue"},
-  container: {flex: 1, flexDirection: "column", alignItems: "stretch"}
+  news: { fontFamily: 'Cochin', fontSize: 20, margin: 2, backgroundColor: 'lightblue' },
+  container: { flex: 1, flexDirection: 'column', alignItems: 'stretch' }
 });
