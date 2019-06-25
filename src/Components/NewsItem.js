@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class NewsItem extends Component {
+  onPress = () => {
+    const { onPress, news } = this.props
+    onPress(news)
+  }
+
   render () {
     const { news } = this.props
 
     return (
-      <TouchableOpacity style={styles.item}>
+      <TouchableOpacity style={styles.item} onPress={this.onPress}>
         <Image style={styles.image} source={{ uri: news.image }} />
         <View style={styles.info}>
           <Text style={styles.title}>{news.title}</Text>

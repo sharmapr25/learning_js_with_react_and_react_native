@@ -84,30 +84,36 @@ export default class NewsScreen extends Component {
     return news.filter((item) => item.categoryId === selectedCategory.id)
   }
 
+  goToNewsDetail = (selectedNews) => {
+    const { navigation } = this.props
+    navigation.navigate('NewsDetailScreen', { news: selectedNews })
+  }
+
   render () {
     const { selectedCategory } = this.state
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ height: 60, justifyContent: 'center'}}>
-        <FlatList
-          horizontal
-          data={categories}
-          renderItem={({ item }) =>
-            <CategoryItem
-              onPress={this.changeCategory}
-              category={item}
-              active={this.state.selectedCategory === item}
-            />
-          }
-          keyExtractor={(item, index) => index.toString()}
-          extraData={selectedCategory}
-        />
+        <View style={{ height: 60, justifyContent: 'center' }}>
+          <FlatList
+            horizontal
+            data={categories}
+            renderItem={({ item }) =>
+              <CategoryItem
+                onPress={this.changeCategory}
+                category={item}
+                active={this.state.selectedCategory === item}
+              />
+            }
+            keyExtractor={(item, index) => index.toString()}
+            extraData={selectedCategory}
+          />
         </View>
         <FlatList
+          testID='newsList'
           data={this.renderNews()}
           renderItem={({ item }) =>
-            <NewsItem news={item} />
+            <NewsItem news={item} onPress={this.goToNewsDetail} />
           }
           keyExtractor={(item, index) => index.toString()}
         />

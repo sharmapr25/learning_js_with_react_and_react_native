@@ -7,36 +7,17 @@
  */
 
 import React, { Component } from 'react'
-import { StyleSheet, SafeAreaView } from 'react-native'
-import NewsScreen from './Containers/NewsScreen'
+import { StyleSheet } from 'react-native'
+import { createAppContainer } from 'react-navigation'
+import AppNavigator from './Navigations'
+
+const AppContainer = createAppContainer(AppNavigator)
 
 type Props = {};
 export default class App extends Component<Props> {
-  render() {
+  render () {
     return (
-      <SafeAreaView style={styles.container}>
-        <NewsScreen />
-      </SafeAreaView>
-    );
+      <AppContainer />
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
