@@ -8,21 +8,24 @@ import SInfo from 'react-native-sensitive-info';
 export default class SignIn extends Component<Props> {
 
     componentDidMount(): void {
-        SInfo.getItem('isLoggedIn', {}).then((value) => {
-            console.log('RWP', value);
+        console.log('Test');
+        this.checkLoginStatus().then((value) => {
             if (value) {
-                console.log('ONMKMKMK')
+
                 this.props.navigation.navigate('App')
             }
         });
     }
 
-    signIn = () => {
+    async checkLoginStatus(){
+        const loginStatus = await SInfo.getItem('isLoggedIn', {})
+        return loginStatus
+    }
 
+    signIn = () => {
         let status = false;
-        SInfo.getItem('isLoggedIn', {}).then((value) => {
-            console.log("SignIN",value)
-            this.setLoginStatus({ user: 'Ranu', isLogin: true}).then(() => {
+        this.checkLoginStatus().then((value) => {
+            this.setLoginStatus('isLoggedIn', true, {}).then(() => {
                 this.props.navigation.navigate('App');
             });
         });
@@ -38,8 +41,9 @@ export default class SignIn extends Component<Props> {
         );
     }
 
-    setLoginStatus(status) {
-        return SInfo.setItem('isLoggedIn', status, {});
+     async setLoginStatus(status) {
+        const loginStatus=await SInfo.setItem('isLoggedIn', status, {});
+        return loginStatus;
     }
 }
 

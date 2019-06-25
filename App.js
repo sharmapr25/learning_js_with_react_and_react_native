@@ -46,7 +46,7 @@ const AppNavigator = createStackNavigator({
     }
 );
 
-const AppContainer = createAppContainer(createSwitchNavigator(
+export const AppContainer = createAppContainer(createSwitchNavigator(
     {
         App: AppNavigator,
         Auth: AuthStack,
@@ -55,6 +55,3 @@ const AppContainer = createAppContainer(createSwitchNavigator(
         initialRouteName: 'Auth',
     }
 ));
-
-
-// const AppContainer = createAppContainer(AppNavigator);

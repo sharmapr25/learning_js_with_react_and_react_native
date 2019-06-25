@@ -5,7 +5,7 @@ import {Button, Text} from "react-native-elements";
 import SInfo from 'react-native-sensitive-info';
 
 
-export default class LogOutButton extends React.Component{
+export default class SignOut extends React.Component{
 
     signOut = () => {
         this.setLoginStatus(false).then(() => {this.props.navigation.navigate('Auth')});
@@ -17,7 +17,7 @@ export default class LogOutButton extends React.Component{
 
     render() {
         return (
-            <Button testID={"signIn"} title={"Sign Out"} onPress={this.signOut}/>
+            <Button testID={"signOut"} title={"Sign Out"} onPress={this.signOut}/>
         );
     }
 }

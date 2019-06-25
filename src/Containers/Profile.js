@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import {Platform, SafeAreaView, Text, Image, StyleSheet, View} from "react-native";
 import {Button} from "react-native-elements";
-import LogOutButton from "../Components/LogOutButton";
+import SignOut from "../Components/SignOut";
+import SInfo from "react-native-sensitive-info";
 
 const pic = {
     url: "https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg"
 };
 export default class Profile extends Component<Props> {
+
     render() {
         return (
             <View style={styles.container}>
@@ -27,7 +29,7 @@ export default class Profile extends Component<Props> {
                         title="NewsWithCategory"
                         onPress={() => this.props.navigation.navigate('NewsWithCategoryMenu')}
                     />
-                    <LogOutButton navigation={this.props.navigation} />
+                    <SignOut navigation={this.props.navigation} />
                 </View>
             </View>
         );

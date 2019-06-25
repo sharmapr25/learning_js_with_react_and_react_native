@@ -3,7 +3,8 @@ import {Text, StyleSheet, Image, FlatList, View} from "react-native";
 import {Button, SearchBar} from 'react-native-elements';
 import NewsItemWithoutCategory from "../Components/NewsItemWithoutCategory";
 import CategoryMenu from "../Components/CategoryMenu";
-import LogOutButton from "../Components/LogOutButton";
+import SignOut from "../Components/SignOut";
+import SInfo from "react-native-sensitive-info";
 
 export const ALL_NEWS = [
   {title: "title1", description: "D", category: "entertainment"},
@@ -68,7 +69,7 @@ export default class NewsWithCategoryMenu extends Component<Props> {
             title="NewsWithCategory"
             onPress={() => this.props.navigation.navigate('NewsWithCategoryMenu')}
         />
-          <LogOutButton navigation={this.props.navigation} />
+          <SignOut navigation={this.props.navigation} />
       </View>
     );
   }

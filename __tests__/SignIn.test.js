@@ -22,6 +22,7 @@ describe("Sign In", () => {
     });
 
     it("should render button to sign in", () => {
+        SInfo.getItem.mockResolvedValue(false);
         const signInButton = wrapper.find({testID: "signIn"});
         expect(signInButton).toHaveLength(1);
     });
@@ -39,13 +40,18 @@ describe("Sign In", () => {
     //     expect(wrapper.state().isLoggedIn).toBe(false);
     // });
 
-    it("should navigate to home page when clicked on sign in" , () =>{
+    it("should navigate to home page when clicked on sign in" , (done) =>{
         SInfo.getItem.mockResolvedValue(false);
         wrapper.find({testID: 'signIn'}).first().simulate('press');
-        // wrapper.find({testID: 'signIn'}).props().onPress();
-        expect(mockNavigation.navigate).toHaveBeenCalledWith('App');
+        setImmediate(()=> {expect(mockNavigation.navigate).toHaveBeenCalledWith('App');})
+        done();
     });
 
+    it('should navigate to home page if already signed in', function () {
+        SInfo.getItem.mockResolvedValue(true);
+        const wrapperTest = shallow(<SignIn navigation={mockNavigation}/>);
+        setImmediate(()=> {expect(mockNavigation.navigate).toHaveBeenCalledWith('App');})
+    });
 
 
 });
