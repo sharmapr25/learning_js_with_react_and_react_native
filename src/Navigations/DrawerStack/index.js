@@ -2,9 +2,9 @@ import { createDrawerNavigator, createStackNavigator, DrawerActions } from 'reac
 import ProfileScreen from '../../Containers/ProfileScreen'
 import NewsScreen from '../../Containers/NewsScreen'
 import NewsDetailScreen from '../../Containers/NewsDetailScreen'
-import { TouchableOpacity } from 'react-native'
 import React from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { TouchableOpacity } from 'react-native'
 
 const DrawerNavigator = createDrawerNavigator({
   ProfileScreen: {
@@ -21,7 +21,8 @@ const DrawerNavigator = createDrawerNavigator({
   }
 }, {
   drawerWidth: 300,
-  initialRouteName: 'NewsScreen'
+  initialRouteName: 'NewsScreen',
+  drawerType: 'slide'
 })
 
 export default createStackNavigator({
@@ -31,12 +32,13 @@ export default createStackNavigator({
       return {
         title: 'News App',
         headerLeft: (
-          <TouchableOpacity style={{ padding: 10 }} onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-            <Icon name='bars' title='hilih' />
-          </TouchableOpacity>)
+          <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} style={{ padding: 10}}>
+            <Icon size={18} name='navicon'/>
+          </TouchableOpacity>
+        )
       }
-    }
-  },
+
+    }  },
   NewsDetailScreen: {
     screen: NewsDetailScreen,
     navigationOptions: ({ navigation }) => {
