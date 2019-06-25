@@ -16,10 +16,15 @@ export default class NewsItem extends Component {
         <Image style={styles.image} source={{ uri: news.image }} />
         <View style={styles.info}>
           <Text style={styles.title}>{news.title}</Text>
-          <Text style={styles.description}>{news.description}</Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
-            <Text style={styles.love}>{news.love}</Text>
-            <Icon style={styles.love} name='heart'/>
+          <Text style={styles.description} numberOfLines={3}>{news.description}</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Text style={styles.love}>
+              {news.love}
+            </Text>
+            <Icon
+              style={styles.love}
+              name='heart'
+            />
           </View>
         </View>
       </TouchableOpacity>
@@ -58,6 +63,6 @@ const styles = StyleSheet.create({
   },
   love: {
     color: 'red',
-    padding: 5,
+    padding: 5
   }
 })
