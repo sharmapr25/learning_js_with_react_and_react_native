@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import {Text, StyleSheet, Image, FlatList, View} from "react-native";
-import { SearchBar } from 'react-native-elements';
+import {Button, SearchBar} from 'react-native-elements';
 import NewsItemWithoutCategory from "../Components/NewsItemWithoutCategory";
 import CategoryMenu from "../Components/CategoryMenu";
+import LogOutButton from "../Components/LogOutButton";
 
 export const ALL_NEWS = [
   {title: "title1", description: "D", category: "entertainment"},
@@ -55,6 +56,19 @@ export default class NewsWithCategoryMenu extends Component<Props> {
           renderItem={({item}) => <NewsItemWithoutCategory news={item}/>}
           keyExtractor={(item, index) => item.title}
         />
+        <Button
+            title="Profile"
+            onPress={() => this.props.navigation.navigate('Profile')}
+        />
+        <Button
+            title="News"
+            onPress={() => this.props.navigation.navigate('News')}
+        />
+        <Button
+            title="NewsWithCategory"
+            onPress={() => this.props.navigation.navigate('NewsWithCategoryMenu')}
+        />
+          <LogOutButton navigation={this.props.navigation} />
       </View>
     );
   }

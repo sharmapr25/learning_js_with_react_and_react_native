@@ -17,6 +17,13 @@ describe("News", () => {
     expect(newsItemWrapper.props.news).toEqual(news);
   });
 
+  it("should render news with title", () => {
+    const news=ALL_NEWS[1];
+    const newsItemWrapper = wrapper.find({testID: "newsList"}).props().renderItem({item: news});
+    console.log(newsItemWrapper);
+    expect(newsItemWrapper.props.news).toEqual(news);
+  });
+
 });
 
 

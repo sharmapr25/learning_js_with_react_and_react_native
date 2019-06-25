@@ -20,7 +20,7 @@ describe("News with category menu", () => {
   });
 
   it("should render categories of all news", () => {
-    const categories = ["entertainment"];
+    const categories = ["entertainment","science"];
 
     const categoryItemWrapper = wrapper.find(CategoryMenu);
     expect(categoryItemWrapper.props().categories).toEqual(categories);
