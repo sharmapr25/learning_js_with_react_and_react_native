@@ -1,13 +1,26 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Button, Alert } from 'react-native'
 
 export default class NewsDetailScreen extends Component {
   constructor (props) {
     super(props)
     const news = props.navigation.getParam('news')
+    const loveNews = props.navigation.getParam('loveNews')
     this.state = {
-      news
+      news,
+      loveNews
     }
+  }
+
+  loveNews = () => {
+    const { navigation } = this.props
+    const { loveNews, news } = this.state
+    Alert.alert(
+      'Hilih',
+
+    )
+    loveNews(news)
+    navigation.goBack()
   }
 
   render () {
@@ -18,6 +31,7 @@ export default class NewsDetailScreen extends Component {
         <View style={styles.info}>
           <Text>{news.description}</Text>
         </View>
+        <Button title="Love" onPress={this.loveNews} />
       </View>
     )
   }
@@ -33,6 +47,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   info: {
+    flex: 1,
     padding: 10
   }
 })

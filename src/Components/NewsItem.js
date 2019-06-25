@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 export default class NewsItem extends Component {
   onPress = () => {
@@ -16,6 +17,10 @@ export default class NewsItem extends Component {
         <View style={styles.info}>
           <Text style={styles.title}>{news.title}</Text>
           <Text style={styles.description}>{news.description}</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+            <Text style={styles.love}>{news.love}</Text>
+            <Icon style={styles.love} name='heart'/>
+          </View>
         </View>
       </TouchableOpacity>
     )
@@ -50,5 +55,9 @@ const styles = StyleSheet.create({
   },
   description: {
     fontWeight: '100'
+  },
+  love: {
+    color: 'red',
+    padding: 5,
   }
 })

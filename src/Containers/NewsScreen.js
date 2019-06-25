@@ -31,42 +31,50 @@ const news = [
     image: 'https://cdn.sindonews.net/dyn/620/content/2019/03/28/185/1390809/bunda-ini-cara-membuat-ketoprak-ala-rumahan-Dfx.jpg',
     title: 'Ketoprak Nyangkut',
     description: 'Ketoprak ada yang nyangkut di dinding dan membuat kita klepek-klepek',
-    categoryId: 2
+    categoryId: 2,
+    love: 0
   },
   {
     image: 'https://cdn.sindonews.net/dyn/620/content/2019/03/28/185/1390809/bunda-ini-cara-membuat-ketoprak-ala-rumahan-Dfx.jpg',
     title: 'Ketoprak Nyangkut',
     description: 'Ketoprak ada yang nyangkut di dinding dan membuat kita klepek-klepek',
-    categoryId: 2
+    categoryId: 2,
+    love: 0
   },
   {
     image: 'https://cdn.sindonews.net/dyn/620/content/2019/03/28/185/1390809/bunda-ini-cara-membuat-ketoprak-ala-rumahan-Dfx.jpg',
     title: 'Ketoprak Nyangkut',
     description: 'Ketoprak ada yang nyangkut di dinding dan membuat kita klepek-klepek',
-    categoryId: 2
+    categoryId: 2,
+    love: 0
   },
   {
     image: 'https://cdn.sindonews.net/dyn/620/content/2019/03/28/185/1390809/bunda-ini-cara-membuat-ketoprak-ala-rumahan-Dfx.jpg',
     title: 'Ketoprak Nyangkut',
     description: 'Ketoprak ada yang nyangkut di dinding dan membuat kita klepek-klepek',
-    categoryId: 1
+    categoryId: 1,
+    love: 0
   },
   {
     image: 'https://cdn.sindonews.net/dyn/620/content/2019/03/28/185/1390809/bunda-ini-cara-membuat-ketoprak-ala-rumahan-Dfx.jpg',
     title: 'Ketoprak Nyangkut',
     description: 'Ketoprak ada yang nyangkut di dinding dan membuat kita klepek-klepek',
-    categoryId: 4
+    categoryId: 4,
+    love: 0
   },
   {
     image: 'https://cdn.sindonews.net/dyn/620/content/2019/03/28/185/1390809/bunda-ini-cara-membuat-ketoprak-ala-rumahan-Dfx.jpg',
     title: 'Ketoprak Nyangkut',
     description: 'Ketoprak ada yang nyangkut di dinding dan membuat kita klepek-klepek',
-    categoryId: 4
+    categoryId: 4,
+    love: 0
   }
 ]
 
 export default class NewsScreen extends Component {
   state = {
+    news,
+    categories,
     selectedCategory: categories[0]
   }
 
@@ -77,7 +85,7 @@ export default class NewsScreen extends Component {
   }
 
   renderNews = () => {
-    const { selectedCategory } = this.state
+    const { selectedCategory, news, categories } = this.state
     if (selectedCategory === categories[0]) {
       return news
     }
@@ -86,11 +94,19 @@ export default class NewsScreen extends Component {
 
   goToNewsDetail = (selectedNews) => {
     const { navigation } = this.props
-    navigation.navigate('NewsDetailScreen', { news: selectedNews })
+    navigation.navigate('NewsDetailScreen', { news: selectedNews, loveNews: this.loveNews })
+  }
+
+  loveNews = (lovedNews) => {
+    const { news } = this.state
+    console.log('RWP', lovedNews)
+    this.setState({
+      news: news.map((newsItem) => lovedNews === newsItem ? {...newsItem, love: newsItem.love+1}: newsItem)
+    })
   }
 
   render () {
-    const { selectedCategory } = this.state
+    const { selectedCategory, categories } = this.state
 
     return (
       <View style={{ flex: 1 }}>

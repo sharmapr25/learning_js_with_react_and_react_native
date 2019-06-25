@@ -1,10 +1,6 @@
-import { createStackNavigator } from 'react-navigation'
-import NewsStack from './NewsStack'
+import { createSwitchNavigator } from 'react-navigation'
+import DrawerStack from './DrawerStack'
 
-export default createStackNavigator({
-  NewsStack
-}, {
-  defaultNavigationOptions: {
-    header: null,
-  }
+export default createSwitchNavigator({
+  DrawerStack
 })
