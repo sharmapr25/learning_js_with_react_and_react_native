@@ -28,7 +28,8 @@
   "jest": {
     "preset": "react-native",
     "setupFiles": [
-      "<rootDir>/setupTests.js"
+      "<rootDir>/setupTests.js",
+      "<rootDir>/__mocks__"
     ]
   }
 }

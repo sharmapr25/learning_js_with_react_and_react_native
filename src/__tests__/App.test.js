@@ -2,11 +2,10 @@
  * @format
  */
 
-import {configure, shallow} from "enzyme";
-import 'react-native';
-import React from 'react';
-import App from '../src/App';
-
+import { shallow } from 'enzyme/build'
+import 'react-native'
+import React from 'react'
+import App from '../App'
 
 // Note: test renderer must be required after react-native.
 
