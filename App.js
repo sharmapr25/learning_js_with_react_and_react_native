@@ -13,6 +13,7 @@ import NewsWithCategoryMenu from "./src/Containers/NewsWithCategoryMenu";
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import Profile from "./src/Containers/Profile";
 import SignIn from "./src/Containers/SignIn";
+import AuthLoadingScreen from "./src/Components/AuthLoadingScreen";
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -50,8 +51,9 @@ export const AppContainer = createAppContainer(createSwitchNavigator(
     {
         App: AppNavigator,
         Auth: AuthStack,
+        AuthLoading: AuthLoadingScreen,
     },
     {
-        initialRouteName: 'Auth',
+        initialRouteName: 'AuthLoading',
     }
 ));
