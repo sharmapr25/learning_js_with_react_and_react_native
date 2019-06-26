@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import NewsItem from '../Components/NewsItem'
 import CategoryItem from '../Components/CategoryItem'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const categories = [
   {
@@ -72,6 +73,17 @@ const news = [
 ]
 
 export default class NewsScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'News Screen',
+      headerLeft: (
+        <TouchableOpacity testID='leftHeader' onPress={() => navigation.navigate('ProfileScreen')} style={{ padding: 10 }}>
+          <Icon size={18} name='user' />
+        </TouchableOpacity>
+      )
+    }
+  }
+
   state = {
     news,
     categories,
@@ -101,7 +113,7 @@ export default class NewsScreen extends Component {
     const { news } = this.state
     console.log('RWP', lovedNews)
     this.setState({
-      news: news.map((newsItem) => lovedNews === newsItem ? {...newsItem, love: newsItem.love+1}: newsItem)
+      news: news.map((newsItem) => lovedNews === newsItem ? { ...newsItem, love: newsItem.love + 1 } : newsItem)
     })
   }
 

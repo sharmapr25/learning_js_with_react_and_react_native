@@ -28,4 +28,16 @@ describe('NewsScreen', () => {
       expect(navigation.navigate).toHaveBeenCalledWith('NewsDetailScreen', { news: item })
     })
   })
+
+  it('should navigate to profile', () => {
+    const navigation = {
+      navigate: jest.fn()
+    }
+    const navigationOptions = NewsScreen.navigationOptions({ navigation })
+    const headerLeftWrapper = navigationOptions.headerLeft
+
+    headerLeftWrapper.props.onPress()
+
+    expect(navigation.navigate).toHaveBeenCalledWith('ProfileScreen')
+  })
 })

@@ -1,5 +1,5 @@
 import { createSwitchNavigator } from 'react-navigation'
-import DrawerStack from './DrawerStack'
+import DrawerStack from './DashboardStack'
 
 export default createSwitchNavigator({
   DrawerStack

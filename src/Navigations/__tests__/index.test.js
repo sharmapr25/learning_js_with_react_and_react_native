@@ -1,6 +1,6 @@
 import AppNavigator from '../'
 import NewsScreen from '../../Containers/NewsScreen'
-import DrawerStack from '../DrawerStack'
+import DrawerStack from '../DashboardStack'
 
 describe('Navigations', () => {
   it('should initial to NewsScreen', () => {
